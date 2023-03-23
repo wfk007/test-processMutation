@@ -1,0 +1,36 @@
+<html>
+    <body>
+        <button id="add-nodes">Add multi nodes</button>
+
+        <div id="target"></div>
+
+        <script src="./rrweb-record.js"></script>
+        <script>
+            const addNodes = document.querySelector('#add-nodes');
+            const target = document.querySelector('#target');
+
+            addNodes.addEventListener('click', () => {
+                const total = 1000;
+                let parent = target;
+                for (let i = 0; i < total; i++) {
+                    const el = document.createElement('div');
+                    el.textContent = `el-${i + 1}`;
+                    parent.append(el);
+                    parent = el;
+                }
+            });
+            rrwebRecord({
+                sampling: {
+                    mouseInteraction: false,
+                    mousemove: false,
+                    scroll: 300,
+                    input: 'last',
+                },
+                slimDOMOptions: true,
+                emit(event) {
+                    console.log(event);
+                },
+            });
+        </script>
+    </body>
+</html>
